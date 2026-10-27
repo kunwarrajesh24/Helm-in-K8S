@@ -1,0 +1,21 @@
+sudo apt update
+sudo apt upgrade -y
+
+##Tools 
+sudo apt install -y \
+  curl \
+  wget \
+  git \
+  ca-certificates \
+  gnupg \
+  apt-transport-https
+
+##Verify the operating system:
+cat /etc/os-release
+
+###Check available memory:
+free -h
+###Check CPU information:
+nproc
+### Check available disk space:
+df -h
