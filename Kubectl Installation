@@ -1,0 +1,20 @@
+Step 1: Download kubectl
+ARCH=$(dpkg --print-architecture)
+
+Step 2: Download kubectl. Download the stable release:
+
+curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/${ARCH}/kubectl"
+
+Step 3: Download kubectl. Download its checksum:
+
+curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/${ARCH}/kubectl.sha256"
+
+Step 4: Download kubectl. Verify the checksum:
+
+echo "$(cat kubectl.sha256)  kubectl" | sha256sum --check
+
+Step 5: Download kubectlInstall kubectl
+
+sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+Step 6:  Download kubectl. Verify the installation: 
+kubectl version --client
