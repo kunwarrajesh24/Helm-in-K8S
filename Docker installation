@@ -1,0 +1,56 @@
+## Remove conflicting packages
+sudo apt remove -y \
+  docker.io \
+  docker-compose \
+  docker-compose-v2 \
+  docker-doc \
+  podman-docker \
+  containerd \
+  runc
+
+### Configure Docker's official repository
+sudo install -m 0755 -d /etc/apt/keyrings
+
+## Download the official Docker signing key:
+sudo curl -fsSL \
+  https://download.docker.com/linux/ubuntu/gpg \
+  -o /etc/apt/keyrings/docker.asc
+
+## Set Permissions
+sudo chmod a+r /etc/apt/keyrings/docker.asc
+
+## Add the repository
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
+  $(. /etc/os-release && echo "${UBUNTU_CODENAME:-$VERSION_CODENAME}") stable" \
+  | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+## Update & Upgrade the system
+sudo apt update -y
+sudo apt upgrade -y
+
+## Install Docker 
+sudo apt install -y \
+  docker-ce \
+  docker-ce-cli \
+  containerd.io \
+  docker-buildx-plugin \
+  docker-compose-plugin
+
+## Start & Enable Docker
+sudo systemctl enable --now docker
+sudo systemctl status docker --no-pager
+
+## Docker Version
+sudo docker version
+sudo docker info
+sudo docker ps
+sudo usermod -aG docker ubuntu && newgrp docker
+
+
+
+
+
+
+
+
