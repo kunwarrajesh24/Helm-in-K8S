@@ -1,0 +1,28 @@
+Step 1:  Inspect Chart.yaml
+cat my-nginx/Chart.yaml
+
+Step 2: Edit values.yaml
+nano my-nginx/values.yaml
+
+Find the relevant configuration and set it to the following.
+replicaCount: 2
+
+image:
+  repository: nginx
+  pullPolicy: IfNotPresent
+  tag: "1.28"
+
+service:
+  type: ClusterIP
+  port: 80
+
+autoscaling:
+  enabled: false
+
+
+STEP 3: VALIDATE THE CHART
+helm lint my-nginx
+helm template nginx-demo ./my-nginx
+
+
+At this stage, the helm template command has not installed any resources.
