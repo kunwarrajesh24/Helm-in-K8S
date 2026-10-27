@@ -55,9 +55,4 @@ You should eventually see three replicas.
 
 ##Check the release history:
 helm history nginx-demo
-
-Teaching point
-
-We changed the configuration without manually editing the Kubernetes Deployment.
-
-This is one of the primary benefits of Helm.
+helm list
