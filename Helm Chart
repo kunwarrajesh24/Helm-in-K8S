@@ -1,0 +1,49 @@
+Step 1: Create a project directory
+mkdir -p ~/helm-practical
+cd ~/helm-practical
+
+Step 2: Create the chart
+helm create my-nginx
+
+Step 3: Inspect its directory structure:
+ls -R my-nginx
+
+You should see a structure resembling:
+
+my-nginx/
+├── Chart.yaml
+├── values.yaml
+├── charts/
+├── templates/
+│   ├── deployment.yaml
+│   ├── service.yaml
+│   ├── ingress.yaml
+│   ├── hpa.yaml
+│   ├── serviceaccount.yaml
+│   ├── _helpers.tpl
+│   ├── NOTES.txt
+│   └── tests/
+└── .helmignore
+
+The exact generated files can differ between Helm versions.
+
+Step 4:  Understand the files
+File or directory	Purpose
+Chart.yaml	Chart metadata
+values.yaml	Default chart configuration
+templates/	Kubernetes resource templates
+templates/deployment.yaml	Deployment definition
+templates/service.yaml	Service definition
+templates/ingress.yaml	Optional Ingress definition
+templates/hpa.yaml	Optional autoscaling definition
+templates/_helpers.tpl	Reusable template functions
+templates/NOTES.txt	Instructions displayed after deployment
+charts/	Chart dependencies
+.helmignore	Files to exclude from packaged charts
+Teaching point
+
+The templates describe the Kubernetes resources.
+
+The values configure those templates.
+
+A release is an installed instance of the chart.
