@@ -1,0 +1,8 @@
+Step 1: INSTALL NGINX USING HELM
+helm install nginx-demo ./my-nginx
+
+## Check the release:
+helm list
+
+##Inspect its status:
+helm status nginx-demo
