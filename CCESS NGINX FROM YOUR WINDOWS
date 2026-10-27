@@ -1,0 +1,63 @@
+Step 1: Find the Service name
+kubectl get services
+
+Step 2: Start port forwarding
+
+On the EC2 instance, run:
+
+kubectl port-forward svc/nginx-demo-my-nginx 8080:80
+
+Keep this terminal running.
+
+You should see:
+
+Forwarding from 127.0.0.1:8080 -> 80
+Step 3: Create an SSH tunnel from Windows
+
+Open a new PowerShell window on your Windows laptop.
+
+Run:
+
+ssh -i "C:\Users\Dell\Downloads\iot-project-key.pem" -L 8081:127.0.0.1:8080 ubuntu@ec2-65-0-99-2.ap-south-1.compute.amazonaws.com
+
+Replace YOUR_EC2_PUBLIC_IP with your actual EC2 public IP.
+
+Keep this SSH session open.
+
+Step 4: Open the application
+
+Open your browser on Windows and enter:
+
+http://localhost:8081
+
+You should see the NGINX welcome page.
+
+Congratulations! You have successfully deployed an application using Helm and accessed it from your laptop.
+
+STEP 5: UPGRADE THE HELM RELEASE
+
+Now let's change the number of replicas from two to three.
+
+Run on EC2:
+
+helm upgrade nginx-demo ./my-nginx \
+  --set replicaCount=3
+
+This upgrades the existing release using the same chart and overrides the replica count.
+
+##Verify the Deployment:
+kubectl get deployments
+
+##Verify the Pods:
+Kubectl get pods
+
+You should eventually see three replicas.
+
+##Check the release history:
+helm history nginx-demo
+
+Teaching point
+
+We changed the configuration without manually editing the Kubernetes Deployment.
+
+This is one of the primary benefits of Helm.
