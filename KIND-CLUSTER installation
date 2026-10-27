@@ -1,0 +1,17 @@
+Step 1: Download the KIND binary:
+
+curl -Lo ./kind \
+  "https://kind.sigs.k8s.io/dl/v0.30.0/kind-linux-${ARCH}"
+
+Step 2: Install
+chmod +x ./kind
+sudo mv ./kind /usr/local/bin/kind
+
+Step 3: Verify KIND
+kind version
+
+Step 4: Verify Docker is working
+
+docker ps
+docker info
+
