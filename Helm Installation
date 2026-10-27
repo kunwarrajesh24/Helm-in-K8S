@@ -1,0 +1,21 @@
+STEP 1:  Download the installation script
+
+curl -fsSL -o get_helm.sh \
+  https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
+
+Step 2:Inspect the script:
+less get_helm.sh
+
+chmod 700 get_helm.sh
+./get_helm.sh
+
+Step 3: Verify Helm
+
+helm version
+helm help
+
+Step 4: Verify Helm and Kubernetes work together
+helm list -A
+
+Step 5: Check the Kubernetes context again:
+kubectl config current-context
