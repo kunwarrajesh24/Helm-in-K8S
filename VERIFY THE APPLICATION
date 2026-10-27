@@ -1,0 +1,13 @@
+##Check the Pods:
+kubectl get pods
+
+##Check the Deployment:
+kubectl get deployments
+
+##Check the Service:
+kubectl get services
+
+##Check the full release history:
+helm history nginx-demo
+kubectl describe pods
+kubectl get events --sort-by=.metadata.creationTimestamp
